@@ -4,6 +4,11 @@ abstract class Shape {
     //Compute the circumference
     //Indicate whether a point is inside a shape or not
     //Compute the Euclidean distance to another shape
+
+    public Point getStartPoint() {
+        return null;
+    }
+
     Point shapeCenter() {
         return null;
     }
@@ -20,22 +25,12 @@ abstract class Shape {
         return false;
     }
 
-    double Euclidean(Point dist) {
+    double euclidean(Point dist) {
         double x1 = shapeCenter().getX();
         double y1 = shapeCenter().getY();
         double x2 = dist.getX();
         double y2 = dist.getY();
-        double euclidean = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-        return euclidean;
-    }
-
-    double distance(Point p1, Point p2) {
-        double x1 = p1.getX();
-        double y1 = p1.getX();
-        double x2 = p2.getX();
-        double y2 = p2.getY();
-        double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-        return distance;
+        return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 }
 
@@ -59,6 +54,7 @@ class Rectangle extends Shape {
         return height;
     }
 
+    @Override
     public Point getStartPoint() {
         return startPoint;
     }
@@ -67,30 +63,23 @@ class Rectangle extends Shape {
     Point shapeCenter() {
         double centerX = getStartPoint().getX() + (getWidth() / 2);
         double centerY = getStartPoint().getY() + (getHeight() / 2);
-        Point center = new Point(centerX, centerY);
-        return center;
+        return new Point(centerX, centerY);
     }
 
     @Override
     double shapeArea() {
-        double area = getWidth() * getHeight();
-        return area;
+        return getWidth() * getHeight();
     }
 
     @Override
     double shapeCircumference() {
-        double circumference = (getHeight() * 2) + (getWidth() * 2);
-        return circumference;
+        return  (getHeight() * 2) + (getWidth() * 2);
     }
 
     @Override
     boolean pointInShape(Point p) {
-        if (p.getX() >= startPoint.getX() && p.getX() <= startPoint.getX() + getWidth() &&
-                p.getY() >= getStartPoint().getY() && p.getY() <= startPoint.getY() + getHeight()) {
-            return true;
-
-        }
-        return false;
+        return p.getX() >= startPoint.getX() && p.getX() <= startPoint.getX() + getWidth() &&
+                p.getY() >= getStartPoint().getY() && p.getY() <= startPoint.getY() + getHeight();
     }
 
     @Override
@@ -113,26 +102,24 @@ class Circle extends Shape {
         return radius;
     }
 
+    @Override
     public Point getStartPoint() {
         return startPoint;
     }
 
     @Override
     Point shapeCenter() {
-        Point center = startPoint;
-        return center;
+        return startPoint;
     }
 
     @Override
     double shapeArea() {
-        double area = Math.PI * radius * radius;
-        return area;
+        return Math.PI * radius * radius;
     }
 
     @Override
     double shapeCircumference() {
-        double circumference = 2 * Math.PI * radius;
-        return circumference;
+        return 2 * Math.PI * radius;
     }
 
     @Override
@@ -143,10 +130,7 @@ class Circle extends Shape {
         double y2 = p.getY();
         double euclidean = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
 
-        if (euclidean < radius) {
-            return true;
-        }
-        return false;
+        return euclidean < radius;
     }
 
 
@@ -157,10 +141,9 @@ class Circle extends Shape {
 }
 
 class Triangle extends Shape {
-    private final Point startPoint;
     private final double width;
     private final double height;
-
+    private final Point startPoint;
 
     public Triangle(Point startPoint, double width, double height) {
         this.startPoint = startPoint;
@@ -181,13 +164,12 @@ class Triangle extends Shape {
         return height;
     }
 
+    @Override
     public Point getStartPoint() {
         return startPoint;
-
     }
     public double sideC(){
-        double sideC = Math.sqrt( width*width+height*height );
-        return sideC;
+        return Math.sqrt( width*width+height*height );
     }
 
     @Override
@@ -198,20 +180,17 @@ class Triangle extends Shape {
         double yA = startPoint.getY();
         double yB = startPoint.getY()+getHeight();
         double yC = startPoint.getY();
-        Point center = new Point((xA+xB+xC)/3,(yA+yB+yC)/3);
-        return center;
+        return new Point((xA+xB+xC)/3,(yA+yB+yC)/3);
     }
 
     @Override
     double shapeArea(){
-        double area = getHeight()*getWidth()/2;
-        return area;
+        return getHeight()*getWidth()/2;
     }
 
     @Override
     double shapeCircumference(){
-        double circumference = getHeight()+getWidth()+sideC();
-        return circumference;
+        return getHeight()+getWidth()+sideC();
     }
 
     @Override

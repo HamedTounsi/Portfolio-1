@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         //Rectangle
+        /*
         Point test = new Point(10,35);
         Rectangle rect1 = new Rectangle(test,10,10);
         System.out.println("Center of the rectangle = "+rect1.shapeCenter());
@@ -14,7 +15,7 @@ public class Main {
         System.out.println(rect1.pointInShape(check));
         //Calculate the distance between two objects
         Rectangle rect2 = new Rectangle(check,10,10);
-        System.out.println(rect1.Euclidean(rect2.getStartPoint()));
+        System.out.println(rect1.euclidean(rect2.getStartPoint()));
 
 
         //Circle
@@ -28,8 +29,8 @@ public class Main {
         System.out.println(c1.pointInShape(check));
         //Calculate the distance between two objects
         Rectangle rect3 = new Rectangle(check,10,10);
-        System.out.println(c1.Euclidean(rect2.getStartPoint()));
-
+        System.out.println(c1.euclidean(rect2.getStartPoint()));
+*/
 
         Point triP = new Point(10,35);
         Triangle tri1 = new Triangle(triP,10,10);
@@ -38,10 +39,10 @@ public class Main {
         System.out.println("Circumference = "+tri1.shapeCircumference());
         //Check if Point "check" is inside the rectangle
         Point checkTri = new Point(11,36);
-        System.out.println(tri1.pointInShape(check));
+        System.out.println(tri1.pointInShape(checkTri));
         //Calculate the distance between two objects
         Triangle tri2 = new Triangle(checkTri,10,10);
-        System.out.println(tri1.Euclidean(tri2.getStartPoint()));
+        System.out.println("Distance between tri1 & tri2 = "+tri1.euclidean(tri2.getStartPoint()));
 
     }
 }
